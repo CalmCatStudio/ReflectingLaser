@@ -1361,7 +1361,7 @@ GameObject:
   - component: {fileID: 1671359263}
   - component: {fileID: 1671359265}
   m_Layer: 0
-  m_Name: Moving Object
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

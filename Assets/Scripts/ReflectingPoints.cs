@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ReflectingPoints
@@ -15,39 +16,55 @@ public class ReflectingPoints
         int maxBounces = pointsContainer.Length - 1;
         pointsContainer[0] = origin;
         Vector3 point = origin;
+        var ray = new ReflectingRayInfo();
 
         int i = 1;
         while (i <= maxBounces)
         {
+            // Check if there is range to keep going.
             if (range <= 0)
             {
+                // If there isn't then every point left will end at this location. This allows the line to finish itself.
                 pointsContainer[i] = point;
                 i++;
                 continue;
             }
 
-            var hit = Physics2D.Raycast(point, direction, range);
-            Vector3 nextPoint = Vector3.zero;
-            if (!hit)
-            {
-                point = point + (direction * range);
-            }
-            else
-            {
-                point = hit.point;
-                direction = Vector2.Reflect(direction, hit.normal);
-            }
-            pointsContainer[i] = point;
-            var distance = Vector3.Distance(point, nextPoint);
+            ray = FireReflectingShot(point, direction, range);
+            direction = ray.direction;
+
+            // Find the distance between the old point, and the new one, and subract it from the range.
+            float distance = Vector3.Distance(point, ray.point);
             range -= distance;
-            i++;
+
+            // Set the old as the new point
+            point = ray.point;
+            // Increment i after adding the point into the container.
+            pointsContainer[i++] = point;
         }
 
         return pointsContainer;
     }
 
+    private ReflectingRayInfo FireReflectingShot(Vector3 point, Vector3 direction, float range)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(point, direction, range);
+        var reflectingRay = new ReflectingRayInfo();
+        if (!hit)
+        {
+            reflectingRay.point = point + (direction * range);
+            reflectingRay.direction = direction;
+        }
+        else
+        {
+            reflectingRay.point = hit.point;
+            reflectingRay.direction = Vector2.Reflect(direction, hit.normal);
+        }
+        return reflectingRay;
+    }
+
+    [Obsolete("Use overload with float range instead. The distance traveled makes more sense.")]
     /// <summary>
-    /// Deprecated.
     /// Uses raycasts to determine an array of points to represent a path that is reflecting of walls.
     /// </summary>
     /// <param name="origin">Starting location</param>
@@ -86,8 +103,8 @@ public class ReflectingPoints
         return pointsContainer;
     }
 
+    [Obsolete("Use overload with float range instead. The distance traveled makes more sense.")]
     /// <summary>
-    /// Deprecated.
     /// Uses raycasts to determine an array of points to represent a path that is reflecting of walls.
     /// </summary>
     /// <param name="origin">Starting location</param>
@@ -125,4 +142,10 @@ public class ReflectingPoints
         }
         return points;
     }
+}
+
+public struct ReflectingRayInfo
+{
+    public Vector3 point;
+    public Vector3 direction;
 }
