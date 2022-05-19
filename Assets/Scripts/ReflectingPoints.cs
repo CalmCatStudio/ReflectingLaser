@@ -1,10 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReflectingPoints
 {
     /// <summary>
+    /// Uses raycasts to determine an array of points to represent a path that is reflecting of walls.
+    /// </summary>
+    /// <param name="origin">Start location</param>
+    /// <param name="direction">Direction to fire</param>
+    /// <param name="range">The range of the laser</param>
+    /// <param name="pointsContainer">The array that will hold the points. Also determines the max number of bounces.</param>
+    /// <returns>A Vector3 array containing points representing a path that reflects off wall.</returns>
+    public Vector3[] GetReflectingPoints(Vector3 origin, Vector3 direction, float range, Vector3[] pointsContainer)
+    {
+        int maxBounces = pointsContainer.Length - 1;
+        pointsContainer[0] = origin;
+        Vector3 point = origin;
+
+        int i = 1;
+        while (i <= maxBounces)
+        {
+            if (range <= 0)
+            {
+                pointsContainer[i] = point;
+                i++;
+                continue;
+            }
+
+            var hit = Physics2D.Raycast(point, direction, range);
+            Vector3 nextPoint = Vector3.zero;
+            if (!hit)
+            {
+                point = point + (direction * range);
+            }
+            else
+            {
+                point = hit.point;
+                direction = Vector2.Reflect(direction, hit.normal);
+            }
+            pointsContainer[i] = point;
+            var distance = Vector3.Distance(point, nextPoint);
+            range -= distance;
+            i++;
+        }
+
+        return pointsContainer;
+    }
+
+    /// <summary>
+    /// Deprecated.
     /// Uses raycasts to determine an array of points to represent a path that is reflecting of walls.
     /// </summary>
     /// <param name="origin">Starting location</param>
@@ -44,8 +87,8 @@ public class ReflectingPoints
     }
 
     /// <summary>
+    /// Deprecated.
     /// Uses raycasts to determine an array of points to represent a path that is reflecting of walls.
-    /// Less performant than passing the array.
     /// </summary>
     /// <param name="origin">Starting location</param>
     /// <param name="direction">Direction to fire</param>

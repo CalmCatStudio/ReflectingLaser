@@ -200,8 +200,6 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.044148162
@@ -1383,9 +1381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserOrigin: {fileID: 897316282}
   line: {fileID: 112984289}
-  bounceTotal: 5
-  segmentLength: 10
-  shortRangeLastBounce: 1
+  maxRange: 20
+  maxBounces: 3
 --- !u!4 &1671359264
 Transform:
   m_ObjectHideFlags: 0
