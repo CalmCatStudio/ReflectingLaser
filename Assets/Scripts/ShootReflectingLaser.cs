@@ -34,7 +34,7 @@ public class ShootReflectingLaser : MonoBehaviour
     private void Update()
     {
         // TODO: Implement optional sway(IE: An aim wobble while sniping.)
-
+        // Technically we could only fire this when this object has moved, but then if the world changes it wouldn't update properly.
         aimDirection = transform.up;
         points = reflecting.GetReflectingPoints(laserOrigin.position, aimDirection, maxRange, layersToBounceOff, points);        
         line.SetPositions(points);

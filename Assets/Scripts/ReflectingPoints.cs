@@ -34,7 +34,7 @@ public class ReflectingPoints
             direction = ray.direction;
             hitObstacle = ray.hitNonBouncable;
 
-            // Find the distance between the old point, and the new one, and subract it from the range.
+            // Find the distance between the old point, and the new one, and subtract it from the range.
             float distance = Vector3.Distance(point, ray.point);
             range -= distance;
 
@@ -52,8 +52,10 @@ public class ReflectingPoints
         RaycastHit2D hit = Physics2D.Raycast(point, direction, range);
         var reflectingRay = new ReflectingRayInfo();
         reflectingRay.hitNonBouncable = false;
+        // Ray did not hit anything.
         if (!hit)
         {
+            // Create a point at the max range a single segment can go.
             reflectingRay.point = point + (direction * range);
             reflectingRay.direction = direction;
         }
