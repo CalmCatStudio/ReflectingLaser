@@ -14,7 +14,7 @@ public class SimpleTwinstickMovement : MonoBehaviour
 
     [SerializeField, Range(0, 500)]
     private float rotationSpeed = 10f;
-    private Vector3 desiredRotationChange = Vector3.zero;
+    private float desiredRotationChange = 0f;
 
     private Rigidbody2D rb = null;
 
@@ -29,18 +29,16 @@ public class SimpleTwinstickMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = velocity * moveSpeed * Time.deltaTime;        
-        rb.MoveRotation(rb.rotation + (desiredRotationChange.z * rotationSpeed * Time.deltaTime));
+        rb.MoveRotation(rb.rotation + (desiredRotationChange * rotationSpeed * Time.deltaTime));
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        var input = context.ReadValue<Vector2>();
-        velocity = input;
+        velocity = context.ReadValue<Vector2>();
     }
 
     public void OnRotate(InputAction.CallbackContext context)
     {
-        var input = context.ReadValue<Vector2>();
-        desiredRotationChange.z = -input.x;
+        desiredRotationChange = -context.ReadValue<Vector2>().x;
     }
 }

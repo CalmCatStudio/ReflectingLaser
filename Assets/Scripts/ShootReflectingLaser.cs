@@ -11,8 +11,12 @@ public class ShootReflectingLaser : MonoBehaviour
     private Vector3[] points = null;
     [SerializeField, Min(0)]
     private float maxRange = 100f;
-    [SerializeField, Min(0), Tooltip("Note: Too many bounces may affect performance.")]
+    [SerializeField, Range(0, 250), Tooltip("Note: Too many bounces may affect performance.")]
     private int maxBounces = 10;
+    [SerializeField]
+    private LayerMask layersToBounceOff = default;
+
+    private Vector3 aimDirection = Vector3.zero;
 
     private ReflectingPoints reflecting = new ReflectingPoints();
 
@@ -29,8 +33,10 @@ public class ShootReflectingLaser : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Implement optional sway boolean(IE: An aim wobble while sniping.)
-        points = reflecting.GetReflectingPoints(laserOrigin.position, transform.up, maxRange, points);        
+        // TODO: Implement optional sway(IE: An aim wobble while sniping.)
+
+        aimDirection = transform.up;
+        points = reflecting.GetReflectingPoints(laserOrigin.position, aimDirection, maxRange, layersToBounceOff, points);        
         line.SetPositions(points);
     }
 

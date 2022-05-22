@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 112984288}
   - component: {fileID: 112984289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Line Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 446612558}
   - component: {fileID: 446612560}
   - component: {fileID: 446612559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bot Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 829518882}
   - component: {fileID: 829518884}
   - component: {fileID: 829518883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 848394067}
   - component: {fileID: 848394069}
   - component: {fileID: 848394068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 897316282}
   - component: {fileID: 897316283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Laser Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +840,7 @@ GameObject:
   - component: {fileID: 946454484}
   - component: {fileID: 946454486}
   - component: {fileID: 946454485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985780139}
   - component: {fileID: 985780140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 1292690870}
   - component: {fileID: 1292690872}
   - component: {fileID: 1292690871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1293436636}
   - component: {fileID: 1293436638}
   - component: {fileID: 1293436637}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,7 +1249,7 @@ GameObject:
   - component: {fileID: 1515593265}
   - component: {fileID: 1515593267}
   - component: {fileID: 1515593266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 1671359266}
   - component: {fileID: 1671359263}
   - component: {fileID: 1671359265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,6 +1383,9 @@ MonoBehaviour:
   line: {fileID: 112984289}
   maxRange: 20
   maxBounces: 3
+  layersToBounceOff:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1671359264
 Transform:
   m_ObjectHideFlags: 0
@@ -1475,7 +1478,7 @@ GameObject:
   - component: {fileID: 1740452255}
   - component: {fileID: 1740452257}
   - component: {fileID: 1740452256}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1587,7 @@ GameObject:
   - component: {fileID: 2006352361}
   - component: {fileID: 2006352363}
   - component: {fileID: 2006352362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
