@@ -29,8 +29,9 @@ public class Simple3DMovement : MonoBehaviour
     {
         if (desiredRotationChange != Vector3.zero)
         {
+
             Quaternion deltaRotation = Quaternion.Euler(desiredRotationChange);
-            rb.rotation *= deltaRotation;
+            rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
         
@@ -44,6 +45,7 @@ public class Simple3DMovement : MonoBehaviour
     public void OnRotate(InputAction.CallbackContext context)
     {
         desiredRotationChange = context.ReadValue<Vector2>();
+        desiredRotationChange = new Vector3(desiredRotationChange.x, 0, desiredRotationChange.y);
         print(desiredRotationChange);
     }
 }
