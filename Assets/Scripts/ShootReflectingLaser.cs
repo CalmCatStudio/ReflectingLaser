@@ -7,7 +7,9 @@ public class ShootReflectingLaser : MonoBehaviour
     [SerializeField]
     private bool use2DPhysics = true;
     [SerializeField]
-    private Transform laserOrigin = null;
+    private Transform origin = null;
+    [SerializeField, Tooltip("The laser fires up from this objects rotation(the transform.up of this object)")]
+    private Transform aimController = null;
     [SerializeField]
     private LineRenderer line = null;
     private Vector3[] points = null;
@@ -38,7 +40,7 @@ public class ShootReflectingLaser : MonoBehaviour
         // TODO: Implement optional sway(IE: An aim wobble while sniping.)
         // Technically we could only fire this when this object has moved, but then if the world changes it wouldn't update properly.
         aimDirection = transform.up;
-        points = reflecting.GetReflectingPoints(laserOrigin.position, aimDirection, maxRange, layersToBounceOff, points, use2DPhysics);        
+        points = reflecting.GetReflectingPoints(origin.position, aimDirection, maxRange, layersToBounceOff, points, use2DPhysics);        
         line.SetPositions(points);
     }
 

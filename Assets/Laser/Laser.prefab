@@ -404,7 +404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae22a37c9c0c324f91e1827f3f37caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserOrigin: {fileID: 2109994889037907973}
+  use2DPhysics: 1
+  origin: {fileID: 0}
+  aimController: {fileID: 0}
   line: {fileID: 2109994889276652894}
   maxRange: 20
   maxBounces: 3

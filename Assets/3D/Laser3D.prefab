@@ -278,7 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use2DPhysics: 0
-  laserOrigin: {fileID: 1442428043661735222}
+  origin: {fileID: 0}
+  aimController: {fileID: 0}
   line: {fileID: 548595565}
   maxRange: 100
   maxBounces: 10
