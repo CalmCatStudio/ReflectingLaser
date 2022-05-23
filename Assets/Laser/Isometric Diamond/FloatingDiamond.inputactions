@@ -101,8 +101,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Left Right Arrows",
-                    "id": "c2c766cf-7fa6-4183-86b0-8a34ecd51454",
+                    "name": "Arrows",
+                    "id": "f4882853-bf8f-4df7-a45c-c51f5b72cf5f",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -112,8 +112,30 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "up",
+                    "id": "4f558473-209b-414c-9b51-7486c6f07601",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "e84977e3-26a7-4684-a446-9fcbffd57f67",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "left",
-                    "id": "4b7341e7-51a2-4e57-af1f-72dd819d996c",
+                    "id": "b520da5d-3ce9-40be-ab5c-7ee16ef2449b",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -124,7 +146,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "18caa665-5cd8-45d6-8860-1b49068c5c90",
+                    "id": "905432e1-c274-4930-9cea-09064fe4f06a",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
@@ -134,8 +156,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "JL",
-                    "id": "96199a8d-960a-4f67-b903-87577305fdd5",
+                    "name": "IJKL",
+                    "id": "5e2ae6c4-4ca1-4262-b438-e6c5e138e2d3",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -145,8 +167,30 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "up",
+                    "id": "0a9b2a12-b650-463b-8ded-2275438c5f38",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "8578aa0f-b047-4a79-a555-2d9c87d72f25",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "left",
-                    "id": "953a8989-b446-49f5-8125-51fb8196f728",
+                    "id": "3ba2cfc4-7249-40ff-95c5-490fe5b99660",
                     "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
@@ -157,7 +201,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "33c7478c-e157-4089-9b10-f6e00048424e",
+                    "id": "b89dc0f3-db3e-4e45-956f-d48d9278b103",
                     "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",

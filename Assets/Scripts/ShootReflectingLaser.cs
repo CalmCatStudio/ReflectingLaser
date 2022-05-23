@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShootReflectingLaser : MonoBehaviour
 {
     [SerializeField]
+    private bool use2DPhysics = true;
+    [SerializeField]
     private Transform laserOrigin = null;
     [SerializeField]
     private LineRenderer line = null;
@@ -36,7 +38,7 @@ public class ShootReflectingLaser : MonoBehaviour
         // TODO: Implement optional sway(IE: An aim wobble while sniping.)
         // Technically we could only fire this when this object has moved, but then if the world changes it wouldn't update properly.
         aimDirection = transform.up;
-        points = reflecting.GetReflectingPoints(laserOrigin.position, aimDirection, maxRange, layersToBounceOff, points);        
+        points = reflecting.GetReflectingPoints(laserOrigin.position, aimDirection, maxRange, layersToBounceOff, points, use2DPhysics);        
         line.SetPositions(points);
     }
 

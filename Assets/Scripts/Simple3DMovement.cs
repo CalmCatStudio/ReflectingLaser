@@ -1,35 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
 /// Extremely simple controller for debugging laser issues.
 /// </summary>
-public class SimpleTwinstickMovement : MonoBehaviour
+public class Simple3DMovement : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 10f;
     private Vector3 velocity = Vector3.zero;
 
-    [SerializeField, Range(0, 500)]
+    [SerializeField]
     private float rotationSpeed = 10f;
-    private float desiredRotationChange = 0f;
+    private Vector3 desiredRotationChange = Vector3.zero;
+    private Vector3 currentRotation = Vector3.zero;
 
-    private Rigidbody2D rb = null;
+    private Rigidbody rb = null;
 
     private void Awake()
     {
         if (!TryGetComponent(out rb))
         {
-            Debug.LogError("No Rigidbody found on Floating Diamond", gameObject);
+            Debug.LogError("No Rigidbody found on Laser", gameObject);
         }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = velocity * moveSpeed * Time.deltaTime;        
-        rb.MoveRotation(rb.rotation + (desiredRotationChange * rotationSpeed * Time.deltaTime));
+        if (desiredRotationChange != Vector3.zero)
+        {
+            Quaternion deltaRotation = Quaternion.Euler(desiredRotationChange);
+            rb.rotation *= deltaRotation;
+        }
+
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -39,6 +43,7 @@ public class SimpleTwinstickMovement : MonoBehaviour
 
     public void OnRotate(InputAction.CallbackContext context)
     {
-        desiredRotationChange = -context.ReadValue<Vector2>().x;
+        desiredRotationChange = context.ReadValue<Vector2>();
+        print(desiredRotationChange);
     }
 }
