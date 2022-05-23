@@ -17,6 +17,7 @@ public class ReflectingPoints
         pointsContainer[0] = origin;
         Vector3 point = origin;
 
+        var reflectingRay = new ReflectingRayInfo();
         bool hitObstacle = false;
         int i = 1;
         while (i < maxBounces)
@@ -30,16 +31,16 @@ public class ReflectingPoints
                 continue;
             }
 
-            ReflectingRayInfo ray = FireReflectingShot(point, direction, range, layersToBounceOff);
-            direction = ray.direction;
-            hitObstacle = ray.hitNonBouncable;
+            reflectingRay = FireReflectingShot(reflectingRay, point, direction, range, layersToBounceOff);
+            direction = reflectingRay.direction;
+            hitObstacle = reflectingRay.hitNonBouncable;
 
             // Find the distance between the old point, and the new one, and subtract it from the range.
-            float distance = Vector3.Distance(point, ray.point);
+            float distance = Vector3.Distance(point, reflectingRay.point);
             range -= distance;
 
             // Set the point to the new location.
-            point = ray.point;
+            point = reflectingRay.point;
             // Increment i after adding the point into the container.
             pointsContainer[i++] = point;
         }
@@ -47,10 +48,9 @@ public class ReflectingPoints
         return pointsContainer;
     }
 
-    private ReflectingRayInfo FireReflectingShot(Vector3 point, Vector3 direction, float range, LayerMask bouncableLayers)
+    private ReflectingRayInfo FireReflectingShot(ReflectingRayInfo reflectingRay, Vector3 point, Vector3 direction, float range, LayerMask bouncableLayers)
     {
         RaycastHit2D hit = Physics2D.Raycast(point, direction, range);
-        var reflectingRay = new ReflectingRayInfo();
         reflectingRay.hitNonBouncable = false;
         // Ray did not hit anything.
         if (!hit)
