@@ -1,5 +1,5 @@
 # ReflectingLaser
-Creates a Line Renderer that bounces off 2D or 3D colliders.
+Creates a Line Renderer that bounces off 2D or 3D colliders. Shouldn't affect performance as long as the number of bounces is kept to a reasonable amount.
 
 Includes two demo scenes that show how the 3D, and 2D versions work.
 
@@ -13,7 +13,7 @@ Includes two demo scenes that show how the 3D, and 2D versions work.
 - Rotate with IJKL, or Arrow keys.
 
 ## Setup
-Setup is easy. Laser Fires from the  
+Setup is easy.
 1. Create an object to fire the laser from.
 2. Add ShootReflectingLaser.cs to the object.
 3. Be sure to set the Origin, AimController, and Line Renderer on the ShootReflectingLaser component.
