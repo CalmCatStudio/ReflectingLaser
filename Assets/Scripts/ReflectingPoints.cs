@@ -11,7 +11,7 @@ public class ReflectingPoints
     /// <param name="range">The range of the laser</param>
     /// <param name="pointsContainer">The array that will hold the points. Also determines the max number of bounces.</param>
     /// <returns>A Vector3 array containing points representing a path that reflects off wall.</returns>
-    public Vector3[] GetReflectingPoints(Vector3 origin, Vector3 direction, float range, LayerMask layersToBounceOff, Vector3[] pointsContainer, bool use2DPhysics = true)
+    public Vector3[] GetReflectingPoints(Vector3 origin, Vector3 direction, float range, LayerMask layersToBounceOff, Vector3[] pointsContainer, bool use2DPhysics = true, bool notifyTarget = false)
     {
         int maxBounces = pointsContainer.Length;
         pointsContainer[0] = origin;
@@ -33,11 +33,11 @@ public class ReflectingPoints
 
             if (use2DPhysics)
             {
-                reflectingRay = FireReflectingShot2D(reflectingRay, point, direction, range, layersToBounceOff);
+                reflectingRay = FireReflectingShot2D(reflectingRay, point, direction, range, layersToBounceOff, notifyTarget);
             }
             else
             {
-                reflectingRay = FireReflectingShot3D(reflectingRay, point, direction, range, layersToBounceOff);
+                reflectingRay = FireReflectingShot3D(reflectingRay, point, direction, range, layersToBounceOff, notifyTarget);
             }
 
             direction = reflectingRay.direction;
@@ -56,7 +56,7 @@ public class ReflectingPoints
         return pointsContainer;
     }
 
-    private ReflectingRayInfo FireReflectingShot2D(ReflectingRayInfo reflectingRay, Vector3 origin, Vector3 direction, float range, LayerMask bouncableLayers)
+    private ReflectingRayInfo FireReflectingShot2D(ReflectingRayInfo reflectingRay, Vector3 origin, Vector3 direction, float range, LayerMask bouncableLayers, bool notifyTarget)
     {
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, range);
         reflectingRay.hitNonBouncable = false;
@@ -75,13 +75,19 @@ public class ReflectingPoints
                 reflectingRay.hitNonBouncable = true;
             }
 
+            if (notifyTarget && hit.collider.TryGetComponent(out ILaserTarget target))
+            {
+                target.HitByLaser();
+            }
+            
+
             reflectingRay.point = hit.point;
             reflectingRay.direction = Vector2.Reflect(direction, hit.normal);
         }
         return reflectingRay;
     }
 
-    private ReflectingRayInfo FireReflectingShot3D(ReflectingRayInfo reflectingRay, Vector3 origin, Vector3 direction, float range, LayerMask bouncableLayers)
+    private ReflectingRayInfo FireReflectingShot3D(ReflectingRayInfo reflectingRay, Vector3 origin, Vector3 direction, float range, LayerMask bouncableLayers, bool notifyTarget)
     {
         reflectingRay.hitNonBouncable = false;
         RaycastHit hit;
@@ -98,6 +104,11 @@ public class ReflectingPoints
             if (!IsLayerBouncable(hit.collider.gameObject.layer, bouncableLayers))
             {
                 reflectingRay.hitNonBouncable = true;
+            }
+
+            if (notifyTarget && hit.collider.TryGetComponent(out ILaserTarget target))
+            {
+                target.HitByLaser();
             }
 
             reflectingRay.point = hit.point;

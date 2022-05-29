@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootReflectingLaser : MonoBehaviour
+public class ShootReflectingAimLaser : MonoBehaviour
 {
     [SerializeField]
     private bool use2DPhysics = true;
+    [SerializeField, Tooltip("This will affect performance.")]
+    private bool notifyTarget = false;
     [SerializeField]
     private Transform origin = null;
     [SerializeField, Tooltip("The laser fires up from this objects rotation(the transform.up of this object)")]
@@ -40,7 +42,7 @@ public class ShootReflectingLaser : MonoBehaviour
         // TODO: Implement optional sway(IE: An aim wobble while sniping.)
         // Technically we could only fire this when this object has moved, but then if the world changes it wouldn't update properly.
         aimDirection = transform.up;
-        points = reflecting.GetReflectingPoints(origin.position, aimDirection, maxRange, layersToBounceOff, points, use2DPhysics);        
+        points = reflecting.GetReflectingPoints(origin.position, aimDirection, maxRange, layersToBounceOff, points, use2DPhysics, notifyTarget);        
         line.SetPositions(points);
     }
 

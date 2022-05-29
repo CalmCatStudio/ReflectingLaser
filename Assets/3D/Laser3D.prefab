@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use2DPhysics: 0
+  notifyTarget: 0
   origin: {fileID: 0}
   aimController: {fileID: 0}
   line: {fileID: 548595565}
