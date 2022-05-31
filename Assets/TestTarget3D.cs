@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestTarget3D : MonoBehaviour, ILaserTarget
+public class TestTarget3D : TestTarget
 {
     [SerializeField]
     private Material material;
@@ -10,8 +10,6 @@ public class TestTarget3D : MonoBehaviour, ILaserTarget
     private Color
         baseColor,
         hitColor;
-
-    private bool hitThisFrame = false;
 
     private void Update()
     {
@@ -25,11 +23,5 @@ public class TestTarget3D : MonoBehaviour, ILaserTarget
         }
 
         hitThisFrame = false;
-    }
-
-    public void HitByLaser()
-    {
-        print("Hit");
-        hitThisFrame = true;
     }
 }

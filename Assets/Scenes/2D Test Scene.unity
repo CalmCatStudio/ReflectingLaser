@@ -6387,6 +6387,10 @@ PrefabInstance:
       propertyPath: use2DPhysics
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2109994889727678112, guid: a70eee31fb65b6f489b1b36dca1b89da, type: 3}
+      propertyPath: layersToContact.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2109994889727678113, guid: a70eee31fb65b6f489b1b36dca1b89da, type: 3}
       propertyPath: m_Name
       value: Laser

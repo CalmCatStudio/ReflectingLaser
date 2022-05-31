@@ -1,4 +1,4 @@
 public interface ILaserTarget
 {
-    public void HitByLaser();
+    public void TouchedByLaser(bool alert, bool hurt);
 }

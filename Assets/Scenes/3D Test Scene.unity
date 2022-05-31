@@ -2183,6 +2183,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4592161115453520396}
     - target: {fileID: 1526934180, guid: 6c4542f018fe17642a3b37da4ccafce4, type: 3}
+      propertyPath: layersToContact.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526934180, guid: 6c4542f018fe17642a3b37da4ccafce4, type: 3}
       propertyPath: layersToBounceOff.m_Bits
       value: 65
       objectReference: {fileID: 0}

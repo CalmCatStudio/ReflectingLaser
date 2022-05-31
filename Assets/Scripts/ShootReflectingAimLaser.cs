@@ -6,8 +6,10 @@ public class ShootReflectingAimLaser : MonoBehaviour
 {
     [SerializeField]
     private bool use2DPhysics = true;
-    [SerializeField, Tooltip("This will affect performance.")]
-    private bool notifyTarget = false;
+    [SerializeField, Tooltip("This will affect performance. Note: HurtTarget and AlertTarget together will barely affect performance.")]
+    private bool alertTarget = false;
+    [SerializeField, Tooltip("This will affect performance. Note: HurtTarget and AlertTarget together will barely affect performance.")]
+    private bool hurtTarget = false;
     [SerializeField]
     private Transform origin = null;
     [SerializeField, Tooltip("The laser fires up from this objects rotation(the transform.up of this object)")]
@@ -19,12 +21,14 @@ public class ShootReflectingAimLaser : MonoBehaviour
     private float maxRange = 100f;
     [SerializeField, Range(0, 250), Tooltip("Note: Too many bounces may affect performance.")]
     private int maxBounces = 10;
-    [SerializeField]
+    [SerializeField, Tooltip("The laser will phase through anything not included in this layermask")]
+    private LayerMask layersToContact = default;
+    [SerializeField, Tooltip("The laser will bounce off anything in this layermask(Unless it is not in the layersToContact)")]
     private LayerMask layersToBounceOff = default;
 
     private Vector3 aimDirection = Vector3.zero;
 
-    private ReflectingPoints reflecting = new ReflectingPoints();
+    private ReflectingPoints reflecting = null;
 
     private void OnValidate()
     {
@@ -34,15 +38,15 @@ public class ShootReflectingAimLaser : MonoBehaviour
 
     private void Awake()
     {
+        reflecting = new ReflectingPoints(use2DPhysics);
         SetupLineRenderer();
     }
 
     private void Update()
     {
-        // TODO: Implement optional sway(IE: An aim wobble while sniping.)
-        // Technically we could only fire this when this object has moved, but then if the world changes it wouldn't update properly.
-        aimDirection = transform.up;
-        points = reflecting.GetReflectingPoints(origin.position, aimDirection, maxRange, layersToBounceOff, points, use2DPhysics, notifyTarget);        
+        // Technically we could only fire when this object has moved, but then if the world changes it wouldn't update properly.
+        aimDirection = aimController.transform.up;
+        points = reflecting.GetReflectingPoints(origin.position, aimDirection, maxRange, layersToContact, layersToBounceOff, points, alertTarget, hurtTarget);        
         line.SetPositions(points);
     }
 

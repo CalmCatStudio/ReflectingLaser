@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestTarget2D : MonoBehaviour, ILaserTarget
+public class TestTarget2D : TestTarget
 {
     [SerializeField]
     private SpriteRenderer spriteRenderer = null;
 
     [SerializeField]
     private Color
-        baseColor,
-        hitColor;
-
-    private bool hitThisFrame = false;
+        baseColor = Color.blue,
+        hitColor = Color.green;
 
     private void Update()
+    {
+        EvaluateHit();
+        hitThisFrame = false;
+    }
+
+    private void EvaluateHit()
     {
         if (!hitThisFrame)
         {
@@ -24,15 +28,5 @@ public class TestTarget2D : MonoBehaviour, ILaserTarget
         {
             spriteRenderer.color = hitColor;
         }
-
-        hitThisFrame = false;
     }
-
-    public void HitByLaser()
-    {
-        print("Hit");
-        hitThisFrame = true;
-    }
-
-
 }

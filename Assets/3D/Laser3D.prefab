@@ -278,12 +278,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use2DPhysics: 0
-  notifyTarget: 0
+  alertTarget: 0
+  hurtTarget: 0
   origin: {fileID: 0}
   aimController: {fileID: 0}
   line: {fileID: 548595565}
   maxRange: 100
   maxBounces: 10
+  layersToContact:
+    serializedVersion: 2
+    m_Bits: 0
   layersToBounceOff:
     serializedVersion: 2
     m_Bits: 64
@@ -299,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a87f7df4db243441ab2731e514a94b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
   rotationSpeed: 10
 --- !u!1001 &6375888778355821804
 PrefabInstance:

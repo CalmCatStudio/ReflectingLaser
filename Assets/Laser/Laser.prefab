@@ -405,12 +405,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   use2DPhysics: 1
-  notifyTarget: 0
+  alertTarget: 0
+  hurtTarget: 0
   origin: {fileID: 2109994889037907973}
   aimController: {fileID: 2109994889727678111}
   line: {fileID: 2109994889276652894}
   maxRange: 30
   maxBounces: 3
+  layersToContact:
+    serializedVersion: 2
+    m_Bits: 0
   layersToBounceOff:
     serializedVersion: 2
     m_Bits: 64
