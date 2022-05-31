@@ -1,7 +1,7 @@
 # ReflectingLaser
-Creates a Line Renderer that bounces off 2D or 3D colliders. Shouldn't affect performance as long as the number of bounces is kept to a reasonable amount.
+Creates a Line Renderer that can bounce off 2D or 3D colliders.
 
-Includes two demo scenes that show how the 3D, and 2D versions work.
+Includes two demo scenes that show how the 2D, and 3D versions work.
 
 ## Demo Scenes
 
