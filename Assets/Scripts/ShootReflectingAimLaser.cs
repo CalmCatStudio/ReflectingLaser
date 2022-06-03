@@ -32,7 +32,7 @@ public class ShootReflectingAimLaser : MonoBehaviour
 
     private void OnValidate()
     {
-        // Allows changing the bounce total in the editor.
+        reflecting = new ReflectingPoints(use2DPhysics);
         SetupLineRenderer();
     }
 

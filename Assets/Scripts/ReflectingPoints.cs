@@ -4,6 +4,7 @@ using UnityEngine;
 public class ReflectingPoints
 {
     private bool use2DPhysics;
+    private ReflectingRayInfo reflectingRay = new ReflectingRayInfo();
 
     public ReflectingPoints(bool use2DPhysics)
     {
@@ -22,7 +23,7 @@ public class ReflectingPoints
     {
         int maxBounces = pointsContainer.Length;
         Vector3 segmentOrigin = pointsContainer[0] = rayOrigin;
-        var reflectingRay = new ReflectingRayInfo(rayOrigin, direction, alertTarget, hurtTarget);
+        reflectingRay.UpdateRay(rayOrigin, direction, alertTarget, hurtTarget);
 
         int i = 1;
         while (i < maxBounces)
@@ -39,11 +40,11 @@ public class ReflectingPoints
 
             if (use2DPhysics)
             {
-                FireReflectingShot2D(ref reflectingRay, segmentOrigin, range, layersToContact, layersToBounceOff);
+                FireReflectingShot2D(segmentOrigin, range, layersToContact, layersToBounceOff);
             }
             else
             {
-                FireReflectingShot3D(ref reflectingRay, segmentOrigin, range, layersToContact, layersToBounceOff);
+                FireReflectingShot3D(segmentOrigin, range, layersToContact, layersToBounceOff);
             }
 
             // Find the distance between the old point, and the new one, and subtract it from the range.
@@ -58,7 +59,7 @@ public class ReflectingPoints
         return pointsContainer;
     }
 
-    private void FireReflectingShot2D(ref ReflectingRayInfo reflectingRay, Vector3 segmentOrigin, float range, LayerMask layersToContact, LayerMask bouncableLayers)
+    private void FireReflectingShot2D(Vector3 segmentOrigin, float range, LayerMask layersToContact, LayerMask bouncableLayers)
     {
         var direction = reflectingRay.direction;
         RaycastHit2D hit = Physics2D.Raycast(segmentOrigin, direction, range, layersToContact);
@@ -76,7 +77,7 @@ public class ReflectingPoints
         }
     }
 
-    private void FireReflectingShot3D(ref ReflectingRayInfo reflectingRay, Vector3 segmentOrigin, float range, LayerMask layersToContact, LayerMask bouncableLayers)
+    private void FireReflectingShot3D(Vector3 segmentOrigin, float range, LayerMask layersToContact, LayerMask bouncableLayers)
     {
         var direction = reflectingRay.direction;
         // Fire a ray, If it misses go into this if statement; Otherwise place the results into hit.
@@ -140,9 +141,18 @@ public struct ReflectingRayInfo
     {
         this.segmentOrigin = segmentOrigin;
         this.direction = direction;
-        hitNonBouncable = false;
         this.alertTarget = alertTarget;
         this.hurtTarget = hurtTarget;
+        hitNonBouncable = false;
+    }
+
+    public void UpdateRay(Vector3 segmentOrigin, Vector3 direction, bool alertTarget, bool hurtTarget)
+    {
+        this.segmentOrigin = segmentOrigin;
+        this.direction = direction;
+        this.alertTarget = alertTarget;
+        this.hurtTarget = hurtTarget;
+        hitNonBouncable = false;
     }
 
     public void SetPositionAndDirection(Vector3 segmentOrigin, Vector3 direction)
